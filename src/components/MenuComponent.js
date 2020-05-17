@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import DishDetail from './DishDetailComponent';
 
 class Menu extends Component {
     constructor(props) {
@@ -7,13 +8,18 @@ class Menu extends Component {
         this.state = {
             selectedDish: null
         }
+        console.log('Menu Component constructor is invoked');
+    }
+
+    componentDidMount() {
+        console.log('Menu Component componentDidMount is invoked');
     }
 
     onDishSelect(dish) {
         this.setState({ selectedDish: dish});
     }
 
-    renderDish(dish) {
+    /*renderDish(dish) {
         if (dish != null) {
             return(
                 <Card>
@@ -30,7 +36,7 @@ class Menu extends Component {
                 <div></div>
             );
         }
-    }
+    }*/
 
     render() {
 
@@ -47,16 +53,22 @@ class Menu extends Component {
             )
         });
 
+        console.log('Menu Component render is invoked');
+
         return (
             <div className="container">
                 <div className="row">
                     {menu}
                 </div>
-                <div className="row">
-                    {this.renderDish(this.state.selectedDish)}
-                </div>
+                    
+                <DishDetail dishDetail={this.state.selectedDish} />
             </div>
         );
+
+        /*<div>
+                    {this.renderDish(this.state.selectedDish)}
+                </div>
+        */
     }
 }
 
